@@ -1,0 +1,38 @@
+# donation_management.py
+
+from datetime import datetime
+
+class Donation:
+    def __init__(self, donation_id, donor_id, blood_type, date, quantity):
+        self.donation_id = donation_id
+        self.donor_id = donor_id
+        self.blood_type = blood_type
+        self.date = date
+        self.quantity = quantity
+
+class DonationManagement:
+    def __init__(self):
+        self.donations = []
+
+    def record_donation(self, donation):
+        self.donations.append(donation)
+        return f"Donation recorded successfully."
+
+    def list_donations_by_donor(self, donor_id):
+        matched_donations = [donation for donation in self.donations if donation.donor_id == donor_id]
+        return matched_donations
+
+    def list_donations_by_date(self, date):
+        matched_donations = [donation for donation in self.donations if donation.date == date]
+        return matched_donations
+
+# Example 
+if __name__ == "__main__":
+    dm = DonationManagement()
+    donation1 = Donation(1, 1, 'A+', datetime(2024, 7, 20), 450)
+    donation2 = Donation(2, 2, 'O-', datetime(2024, 7, 21), 500)
+
+    print(dm.record_donation(donation1))
+    print(dm.record_donation(donation2))
+    print(dm.list_donations_by_donor(1))
+    print(dm.list_donations_by_date(datetime(2024, 7, 20)))
