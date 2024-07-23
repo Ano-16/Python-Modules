@@ -1,0 +1,34 @@
+# inventory_management.py
+
+class BloodInventory:
+    def _init_(self):
+        self.inventory = {}
+
+    def add_to_inventory(self, blood_type, quantity):
+        if blood_type in self.inventory:
+            self.inventory[blood_type] += quantity
+        else:
+            self.inventory[blood_type] = quantity
+        return f"Added {quantity}ml of {blood_type} blood to inventory."
+
+    def remove_from_inventory(self, blood_type, quantity):
+        if blood_type in self.inventory and self.inventory[blood_type] >= quantity:
+            self.inventory[blood_type] -= quantity
+            return f"Removed {quantity}ml of {blood_type} blood from inventory."
+        else:
+            return "Insufficient blood in inventory."
+
+    def check_inventory(self, blood_type):
+        if blood_type in self.inventory:
+            return f"{self.inventory[blood_type]}ml of {blood_type} blood available."
+        else:
+            return f"No {blood_type} blood available in inventory."
+
+# Example 
+if _name_ == "_main_":
+    bi = BloodInventory()
+    print(bi.add_to_inventory('A+', 500))
+    print(bi.add_to_inventory('O-', 300))
+    print(bi.check_inventory('A+'))
+    print(bi.remove_from_inventory('A+', 200))
+    print(bi.check_inventory('A+'))
