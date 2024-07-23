@@ -1,0 +1,35 @@
+# donor_management.py
+
+class Donor:
+    def __init__(self, donor_id, name, blood_type, age, contact):
+        self.donor_id = donor_id
+        self.name = name
+        self.blood_type = blood_type
+        self.age = age
+        self.contact = contact
+
+class DonorManagement:
+    def __init__(self):
+        self.donors = []
+
+    def add_donor(self, donor):
+        self.donors.append(donor)
+        return f"Donor {donor.name} added successfully."
+
+    def search_donor_by_blood_type(self, blood_type):
+        matched_donors = [donor for donor in self.donors if donor.blood_type == blood_type]
+        return matched_donors
+
+    def list_all_donors(self):
+        return self.donors
+
+# Example 
+if __name__ == "__main__":
+    dm = DonorManagement()
+    donor1 = Donor(1, 'John Doe', 'A+', 30, '123-456-7890')
+    donor2 = Donor(2, 'Jane Smith', 'O-', 25, '098-765-4321')
+
+    print(dm.add_donor(donor1))
+    print(dm.add_donor(donor2))
+    print(dm.search_donor_by_blood_type('A+'))
+    print(dm.list_all_donors())
